@@ -1,4 +1,5 @@
 var quizFormEl = document.querySelector(".quiz-body");
+var counterEl = 0;
 var quizEl=[
     {
         question:"What is the keyword to declare a variable?",
@@ -79,12 +80,23 @@ function showQuiz(quiz)
 
    
 
-showQuiz(quizEl[1]);
+
 
 
 var btnEl = document.querySelector('.start-btn');
-btnEl.addEventListener('click', function() {
-  console.log('Clicked!');
+btnEl.addEventListener("click",function()
+{
+    if(counterEl<=9)
+    {
+        showQuiz(quizEl[counterEl]);
+        counterEl++;
+        console.log(counterEl);
+    }
+    else
+    {
+        alert("Quiz completed");
+    }
+    
 });
 
 
