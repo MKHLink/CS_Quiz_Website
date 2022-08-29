@@ -1,5 +1,7 @@
 var quizFormEl = document.querySelector(".quiz-body");
 var counterEl = 0;
+var scoreEl=0;
+
 var quizEl=[
     {
         question:"What is the keyword to declare a variable?",
@@ -53,6 +55,32 @@ var quizEl=[
     }
 ];
 
+
+
+function scoreTracker()
+{
+    //clearInterval(timerEl);
+    alert("Your score is "+scoreEl+"out of 10");
+}
+
+
+
+var secEl = 150;
+var timeEl = setInterval(myTimer, 1000);
+
+function myTimer() {
+    document.getElementById('timer').innerHTML = secEl + " seconds left";
+    secEl--;
+    if (secEl == -1) {
+        clearInterval(timeEl);
+        alert("Time out!! :(");
+    }
+}
+
+
+
+
+
 function showQuiz(quiz)
 {
     var questionEl = document.getElementById("quiz");
@@ -67,11 +95,12 @@ function showQuiz(quiz)
         {
             if(quiz.correct===y)
             {
-                alert("Correct Answer");
+                //alert("Correct Answer");
+                scoreEl++;
             }
             else
             {
-                alert("Wrong Answer");
+                //alert("Wrong Answer");
             }
         });
     });
@@ -95,33 +124,9 @@ btnEl.addEventListener("click",function()
     else
     {
         alert("Quiz completed");
+        clearInterval(timeEl);
+        scoreTracker();
     }
     
 });
 
-
-
-
-
-
-
-
-
-
-
-/*var timeLeft = 900;
-timer();
-
-function timer()
-{
-    var timerEl = document.querySelector(".timer");
-    var timeLeftEl = ("timeLeft").textContent;
-    timerEl.appendChild(timeLeftEl);
-    timeLeft--;
-
-    if(timeLeft<=0)
-    {
-        clearInterval(timeLeft);
-        window.alert("Time is up!");
-    }
-}*/
