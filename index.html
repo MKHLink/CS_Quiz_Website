@@ -4,31 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
+    <title>Quiz</title>
 </head>
 <body>
     <header>
-        <h1>Welcome, please press next to start the quiz</h1>
+        <h1>Welcome, press start to take the quiz</h1>
 
         <div id="timer"></div>
     </header>
 
-    <section class="quiz-body">
-        <div id = "quiz"></div>
-        <ul>
-            <li class="choice"></li>
-            <li class="choice"></li>
-            <li class="choice"></li>
-            <li class="choice"></li>
-        </ul>
-
-        <p class="timer"></p>
-    </section>
-
+    <form id="quiz-start">
+        <div id="btn-container">
+            <h2 id="question"></h2>
     
-    <form class="quiz-start">
-        <button id="btn" class="start-btn" type ="button">Next</button>
+            <button id="answer0" type ="submit"></button>
+            <button id="answer1" type ="submit"></button>
+            <button id="answer2" type ="submit"></button>
+            <button id="answer3" type ="submit"></button>
+        </div>
+        <button id="btn" class="start-btn" type ="submit">Start</button>
     </form>
     
     <script src="./assets/js/script.js"></script>

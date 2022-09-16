@@ -1,6 +1,3 @@
-var quizFormEl = document.querySelector(".quiz-body");
-var counterEl = 0;
-var scoreEl=0;
 
 var quizEl=[
     {
@@ -55,78 +52,54 @@ var quizEl=[
     }
 ];
 
+var quizFormEl = document.querySelector("#quiz-start");
+var buttonContainer = document.querySelector("#btn-container")
+var indexEl = 0;
 
+quizFormEl.addEventListener("submit",showQuiz);
 
-function scoreTracker()
+function showQuiz(event)
 {
-    //clearInterval(timerEl);
-    alert("Your score is "+scoreEl+"out of 10");
+    event.preventDefault();
+    console.log("Pressed");
+    if(indexEl<10)
+    {
+        quizDisplay(quizEl,indexEl);
+    }
+
+    indexEl++;
+}
+
+function quizDisplay(quiz,index)
+{
+    var question = document.getElementById("question");
+    question.textContent= quiz[index].question;
+    buttonContainer.appendChild(question);
+    quizFormEl.appendChild(buttonContainer);
+
+    for(var i = 0;i<4;i++)
+    {
+        console.log(quiz[index].choice[i]);
+
+        var answer = document.getElementById("answer"+i);
+        answer.textContent = quiz[index].choice[i];
+        buttonContainer.appendChild(answer);
+        quizFormEl.appendChild(buttonContainer);
+        
+    }
+
 }
 
 
 
-var secEl = 150;
-var timeEl = setInterval(myTimer, 1000);
-
-function myTimer() {
-    document.getElementById('timer').innerHTML = secEl + " seconds left";
-    secEl--;
-    if (secEl == -1) {
-        clearInterval(timeEl);
-        alert("Time out!! :(");
-    }
-}
 
 
 
 
 
-function showQuiz(quiz)
-{
-    var questionEl = document.getElementById("quiz");
-    questionEl.textContent = quiz.question;
-
-    var choices = document.querySelectorAll(".choice");
-    choices.forEach(function(x,y)
-    {
-        x.textContent = quiz.choice[y];
-
-        x.addEventListener('click',function()
-        {
-            if(quiz.correct===y)
-            {
-                //alert("Correct Answer");
-                scoreEl++;
-            }
-            else
-            {
-                //alert("Wrong Answer");
-            }
-        });
-    });
-
-}
-
-   
 
 
 
 
-var btnEl = document.querySelector('.start-btn');
-btnEl.addEventListener("click",function()
-{
-    if(counterEl<=9)
-    {
-        showQuiz(quizEl[counterEl]);
-        counterEl++;
-        console.log(counterEl);
-    }
-    else
-    {
-        alert("Quiz completed");
-        clearInterval(timeEl);
-        scoreTracker();
-    }
-    
-});
+
 
