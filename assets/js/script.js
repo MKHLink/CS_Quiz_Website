@@ -55,7 +55,12 @@ var quizEl=[
 var quizFormEl = document.querySelector("#quiz-start");
 var buttonContainer = document.querySelector("#btn-container")
 var indexEl = 0;
-var score = 0;
+var scoreEl = 0;
+
+var button1 = document.getElementById("0");
+var button2 = document.getElementById("1");
+var button3 = document.getElementById("2");
+var button4 = document.getElementById("3");
 
 quizFormEl.addEventListener("submit",showQuiz);
 
@@ -66,6 +71,44 @@ function showQuiz(event)
     if(indexEl<10)
     {
         quizDisplay(quizEl,indexEl);
+
+        //check each button for scoring
+        button1.onclick=function(){
+        if(quizEl[indexEl-1].correct==button1.textContent)
+            {
+                console.log("Score");
+                scoreEl=scoreEl+1;
+            }
+        };
+
+        button2.onclick=function(){
+        if(quizEl[indexEl-1].correct==button2.textContent)
+            {
+                console.log("Score");
+                scoreEl=scoreEl+1;
+            }
+        };
+
+        button3.onclick=function(){
+            if(quizEl[indexEl-1].correct==button3.textContent)
+                {
+                    console.log("Score");
+                    scoreEl=scoreEl+1;
+                }
+            };
+
+        button4.onclick=function(){
+            if(quizEl[indexEl-1].correct==button4.textContent)
+                {
+                    console.log("Score");
+                    scoreEl=scoreEl+1;
+                }
+            };
+    }
+    else
+    {
+        console.log(scoreEl);
+        window.alert("Your Score is: "+scoreEl);
     }
 
     indexEl++;
@@ -87,3 +130,4 @@ function quizDisplay(quiz,index)
         
     }
 }
+
