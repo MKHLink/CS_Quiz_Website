@@ -52,15 +52,27 @@ var quizEl=[
     }
 ];
 
+var headerEl = document.querySelector("#header");
 var quizFormEl = document.querySelector("#quiz-start");
 var buttonContainer = document.querySelector("#btn-container")
 var indexEl = 0;
 var scoreEl = 0;
+var timeleft = 10;
 
 var button1 = document.getElementById("0");
 var button2 = document.getElementById("1");
 var button3 = document.getElementById("2");
 var button4 = document.getElementById("3");
+var correct = false;
+var timeUp = false;
+
+var startbtn = document.getElementById("btn");
+startbtn.onclick=function(){
+    timer(timeleft);
+    var message = document.createElement("h5");
+    message.textContent = "Each correct asnwer adds time to the timer!";
+    headerEl.appendChild(message);
+};
 
 quizFormEl.addEventListener("submit",showQuiz);
 
@@ -68,23 +80,24 @@ function showQuiz(event)
 {
     event.preventDefault();
     
-    if(indexEl<10)
+
+    if(indexEl<10 && !timeUp)
     {
         quizDisplay(quizEl,indexEl);
-
+        
         //check each button for scoring
         button1.onclick=function(){
-        if(quizEl[indexEl-1].correct==button1.textContent)
-            {
-                console.log("Score");
-                scoreEl=scoreEl+1;
-            }
+        if(quizEl[indexEl-1].correct===button1.textContent)
+        {
+            correct = true;
+            scoreEl=scoreEl+1;
+        }
         };
 
         button2.onclick=function(){
         if(quizEl[indexEl-1].correct==button2.textContent)
             {
-                console.log("Score");
+                correct = true;
                 scoreEl=scoreEl+1;
             }
         };
@@ -92,7 +105,7 @@ function showQuiz(event)
         button3.onclick=function(){
             if(quizEl[indexEl-1].correct==button3.textContent)
                 {
-                    console.log("Score");
+                    correct = true;
                     scoreEl=scoreEl+1;
                 }
             };
@@ -100,7 +113,7 @@ function showQuiz(event)
         button4.onclick=function(){
             if(quizEl[indexEl-1].correct==button4.textContent)
                 {
-                    console.log("Score");
+                    correct = true;
                     scoreEl=scoreEl+1;
                 }
             };
@@ -129,5 +142,34 @@ function quizDisplay(quiz,index)
         quizFormEl.appendChild(buttonContainer);
         
     }
+}
+
+    
+
+
+function timer(time)
+{
+    
+    var downloadTimer = setInterval(function(){
+    if(time <= 0)
+    {
+        clearInterval(downloadTimer);
+        document.getElementById("timer").innerHTML = "Time's Up!";
+        window.alert("Your Score is: "+scoreEl);
+        timeUp = true;
+    } 
+    else
+    {
+        document.getElementById("timer").innerHTML = "Time Remaining: "+time+ " seconds";
+    }
+
+    if(correct===true)
+    {
+        time+=10;
+        correct=false;
+    }
+    time -= 1;
+    }, 1000);
+    
 }
 
