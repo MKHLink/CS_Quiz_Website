@@ -59,6 +59,7 @@ var indexEl = 0;
 var scoreEl = 0;
 var timeleft = 10;
 
+
 var button1 = document.getElementById("0");
 var button2 = document.getElementById("1");
 var button3 = document.getElementById("2");
@@ -122,6 +123,9 @@ function showQuiz(event)
     {
         console.log(scoreEl);
         window.alert("Your Score is: "+scoreEl);
+        var name = window.prompt("Enter Your Initials to save score");
+        loadScore(name,scoreEl);
+    
     }
 
     indexEl++;
@@ -173,3 +177,35 @@ function timer(time)
     
 }
 
+function saveScore(name,score)
+{
+    var highScore={playerName: name,PlayerScore: score};
+    localStorage.setItem('highscore',JSON.stringify(highScore));
+}
+
+function loadScore(name,score)
+{
+    if(localStorage.getItem('highscore')===null)
+        {
+            saveScore(name,score);
+            window.location.reload();
+        }
+        else
+        {
+            var setScore = JSON.parse(localStorage.getItem('highscore'));
+            var newName =setScore.playerName;
+            var newScore = setScore.PlayerScore;
+            console.log(setScore);
+            if(score>(newScore))
+            {
+                window.alert("Congratulations, you hold the highscore now");
+                saveScore(name,score);
+            }
+            else
+            {
+                window.alert("You failed to achive highscore \n"+ "Highscore: \n"+newName+"\n"+newScore);
+            }
+            window.location.reload();
+        }
+
+}
