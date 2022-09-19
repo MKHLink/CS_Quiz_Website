@@ -57,7 +57,7 @@ var quizFormEl = document.querySelector("#quiz-start");
 var buttonContainer = document.querySelector("#btn-container")
 var indexEl = 0;
 var scoreEl = 0;
-var timeleft = 10;
+var timeleft = 15;
 
 
 var button1 = document.getElementById("0");
@@ -70,6 +70,8 @@ var timeUp = false;
 var startbtn = document.getElementById("btn");
 startbtn.onclick=function(){
     timer(timeleft);
+    document.getElementById("btn").style.display = "none";
+    document.getElementById("btn-container").style.display = "block";
     var message = document.createElement("h5");
     message.textContent = "Each correct asnwer adds time to the timer!";
     headerEl.appendChild(message);
@@ -169,7 +171,7 @@ function timer(time)
 
     if(correct===true)
     {
-        time+=10;
+        time+=4;
         correct=false;
     }
     time -= 1;

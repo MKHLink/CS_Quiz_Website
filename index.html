@@ -9,24 +9,27 @@
     <title>Quiz</title>
 </head>
 <body>
-    <header id="header">
+    <header id="header" class="hero">
         <h1>Welcome, press start to take the quiz</h1>
         
         <div id="timer"></div>
     </header>
 
-    <form id="quiz-start">
-        <div id="btn-container">
+    <form id="quiz-start" class="container text-center">
+        <div id="btn-container" class="btn-group-vertical row" role="group" aria-label="Vertical button group">
             <h2 id="question"></h2>
     
-            <button id="0"  type ="submit"></button>
-            <button id="1"  type ="submit"></button>
-            <button id="2"  type ="submit"></button>
-            <button id="3"  type ="submit"></button>
+            <button id="0"  type ="submit" class="btn btn-dark"></button>
+            <button id="1"  type ="submit" class="btn btn-light"></button>
+            <button id="2"  type ="submit" class="btn btn-dark"></button>
+            <button id="3"  type ="submit" class="btn btn-light"></button>
         </div>
-        <button id="btn" class="start-btn" type ="submit">Start</button>
+        <button id="btn" class="start-btn btn btn-primary col-6" type ="submit">Start</button>
     </form>
     
+    <footer class="footer">
+        <p>Made by Mohammad Komol Hasan </p>
+    </footer>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
