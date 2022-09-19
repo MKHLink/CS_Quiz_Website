@@ -163,6 +163,7 @@ function timer(time)
         document.getElementById("timer").innerHTML = "Time's Up!";
         window.alert("Your Score is: "+scoreEl);
         timeUp = true;
+        window.location.reload();
     } 
     else
     {
