@@ -1,4 +1,4 @@
-
+//This holds all the quiz data
 var quizEl=[
     {
         question:"What is the keyword to declare a variable?",
@@ -52,6 +52,7 @@ var quizEl=[
     }
 ];
 
+//variables and selectors
 var headerEl = document.querySelector("#header");
 var quizFormEl = document.querySelector("#quiz-start");
 var buttonContainer = document.querySelector("#btn-container")
@@ -59,7 +60,7 @@ var indexEl = 0;
 var scoreEl = 0;
 var timeleft = 15;
 
-
+//This are all the answer buttons to be displayed in the page
 var button1 = document.getElementById("0");
 var button2 = document.getElementById("1");
 var button3 = document.getElementById("2");
@@ -67,6 +68,7 @@ var button4 = document.getElementById("3");
 var correct = false;
 var timeUp = false;
 
+//The start button, gets hidden upon click and makes the other buttons appear
 var startbtn = document.getElementById("btn");
 startbtn.onclick=function(){
     timer(timeleft);
@@ -77,8 +79,10 @@ startbtn.onclick=function(){
     headerEl.appendChild(message);
 };
 
+//Listens for any event changes
 quizFormEl.addEventListener("submit",showQuiz);
 
+//Displayes all the quiz data in page and also listens to the answer button clicks
 function showQuiz(event)
 {
     event.preventDefault();
@@ -133,6 +137,7 @@ function showQuiz(event)
     indexEl++;
 }
 
+//Appends quizEl data to HTML
 function quizDisplay(quiz,index)
 {
     var question = document.getElementById("question");
@@ -152,7 +157,7 @@ function quizDisplay(quiz,index)
 
     
 
-
+//Timer for the quiz
 function timer(time)
 {
     
@@ -180,12 +185,14 @@ function timer(time)
     
 }
 
+//saves highscore to local storage
 function saveScore(name,score)
 {
     var highScore={playerName: name,PlayerScore: score};
     localStorage.setItem('highscore',JSON.stringify(highScore));
 }
 
+//loads save score from localstorage and overwirtes if current socre is highers
 function loadScore(name,score)
 {
     if(localStorage.getItem('highscore')===null)
